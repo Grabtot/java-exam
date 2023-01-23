@@ -1,18 +1,22 @@
 package edu.itstep.exam.service;
 
 import edu.itstep.exam.entity.BaseEntity;
-import edu.itstep.exam.repository.Repository;
+import edu.itstep.exam.repository.BaseRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class ServiceBaseImpl<T extends BaseEntity> implements ServiceBase<T> {
+public class BaseServiceImpl<T extends BaseEntity, R extends BaseRepository<T>> implements BaseService<T> {
 
+
+    protected final R repository;
     @Autowired
-    Repository<T> repository;
+    public BaseServiceImpl(R repository){
+        this.repository = repository;
+    }
+
 
     @Override
     @Transactional
