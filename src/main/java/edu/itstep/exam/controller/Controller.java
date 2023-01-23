@@ -2,6 +2,7 @@ package edu.itstep.exam.controller;
 
 
 import edu.itstep.exam.entity.*;
+import edu.itstep.exam.service.ServiceBaseImpl;
 import edu.itstep.exam.service.country.CountryService;
 import edu.itstep.exam.service.services.ServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import java.util.List;
 public class Controller {
 
     @Autowired
-    private CountryService countryService;
+    private ServiceBaseImpl<Country> countryService;
     @Autowired
     private ServiceService serviceService;
 
@@ -46,7 +47,7 @@ public class Controller {
     public Country updateCountry(@RequestBody Country country) {
         return countryService.saveOrUpdate(country);
     }
-    @PostMapping("/services")
+    @PutMapping("/services")
     public Service updateService(@RequestBody Service service){
         return  serviceService.saveOrUpdate(service);
     }
